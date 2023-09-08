@@ -13,5 +13,10 @@ public class Main {
         {
             wylosowaneLiczby[i] = (int)(Math.random()*100+1);
         }
+
+        for (int wartoscWylosowana:wylosowaneLiczby)
+        {
+            System.out.println(wartoscWylosowana);
+        }
     }
 }
