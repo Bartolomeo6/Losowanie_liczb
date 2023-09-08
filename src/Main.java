@@ -1,121 +1,48 @@
 import java.util.*;
-
 public class Main {
-    public static void main(String[] args)
-    {
-        System.out.println("Siemanko, losowanie liczb.");
-        System.out.println("Losowanie (SCAM MACHINE) z zakresu 1-100");
-
-        int zmienna = 10; // typ prosty, tylko zmienna
-        Integer zmienna2 = 20; // typ złożony (wielka litera) obiekt klasy Integer = metoda
-
-        /*-----------------------------------*/
-
-        /* int wylosowaneLiczby[] = new int[6];
-
-        for (int i = 0; i < wylosowaneLiczby.length; i++)
-        {
-            wylosowaneLiczby[i] = (int)(Math.random()*100+1);
-        }
-
-        for (int wartoscWylosowana:wylosowaneLiczby)
-        {
-            System.out.println(wartoscWylosowana);
-        }*/
-
-        /*------------------------------------------------*/
-
-        /*
-        Tablica musi mieć zdefiniowany rozmiar,
-        nie można go zmienić w trakcie działania programu.
-        Może przechowywać typy proste i złożone,
-        elementy indeksowane mogą się powtarzać
-
-        ---------------
-
-        Kolekcje
-        nie deklarujemy rozmiaru, może się zmieniać w trakcie działania programu
-
-        --------------
-
-        Listy: list, ArrayList, LinkedList
-
-        --------------
-
-        Elementy indeksowane: każdy ma swoje miejsce, mogą się powtarzać
-
-        --------------
-
-        Zbiory: Set i HashSet
-
-        --------------
-
-        Zazwyczaj elementy nie są indeksowane, nie powtarzają się
-
-        --------------
-
-        Słowniki Map zawierają pary (klucz-wartość)
-
-         */
-
+    private static HashSet<Integer> wylosuj(){
         HashSet<Integer> wylosowaneLiczby = new HashSet<>();
-        while(wylosowaneLiczby.size()<6)
-        {
-
+        while(wylosowaneLiczby.size()<6) {
             wylosowaneLiczby.add((int)(Math.random()*10+1));
-
         }
-
-        for (int wartoscWylosowana:wylosowaneLiczby)
-        {
+        return wylosowaneLiczby;
+    }
+    private static ArrayList<Integer> wpiszZKlawiatury(){
+        ArrayList<Integer> wpisaneLiczby = new ArrayList<>();
+        Scanner klawiatura = new Scanner(System.in);
+        for (int i = 0; i < 6; i++) {
+            System.out.println("Wstaw "+i+" liczbę");
+            int liczba  = klawiatura.nextInt();
+            while(wpisaneLiczby.contains(liczba)){
+                System.out.println("Podaj inna liczbę");
+                liczba = klawiatura.nextInt();
+            }
+            wpisaneLiczby.add(liczba);
+        }
+        return wpisaneLiczby;
+    }
+    private static List<Integer> sprawdzTrafione(HashSet<Integer> wylosowaneLiczby, ArrayList<Integer> wpisaneLiczby ){
+        List<Integer> trafioneLiczby = new LinkedList<>();
+        for (Integer wpisanaLiczba:
+                wpisaneLiczby) {
+            if(wylosowaneLiczby.contains(wpisanaLiczba))
+                trafioneLiczby.add(wpisanaLiczba);
+        }
+        return trafioneLiczby;
+    }
+    public static void main(String[] args) {
+        System.out.println("Witaj na losowaniu liczb");
+        System.out.println("losowanie 6 liczb całkowitej z zakresu od 1 do 100");
+        HashSet <Integer>wylosowaneLiczby = wylosuj();
+        for (int wartoscWylosowana:wylosowaneLiczby) {
             System.out.println(wartoscWylosowana);
         }
 
-        /* ------------------------------------------------------------ */
+        ArrayList<Integer> wpisaneLiczby =wpiszZKlawiatury();
+        System.out.println("Wpisane liczby"+wpisaneLiczby);
+        List<Integer> trafioneLiczby = sprawdzTrafione(wylosowaneLiczby,wpisaneLiczby);
+        System.out.println("Odgadnięto "+trafioneLiczby);
 
-        //TODO: do ArrayListy wstawić 6 różnych liczb pisanych z klawiatury
-
-            ArrayList<Integer> wpisaneLiczby = new ArrayList<>();
-            Scanner klawiatura = new Scanner(System.in);
-
-            for (int i = 1; i <= 6; i++)
-            {
-                System.out.println("Wstaw liczbę nr. "+i);
-                int liczba = klawiatura.nextInt();
-
-                while(wpisaneLiczby.contains(liczba))
-                {
-
-                    System.out.println("Podaj inną liczbę");
-                    liczba = klawiatura.nextInt();
-
-                }
-                wpisaneLiczby.add(liczba);
-            }
-
-        System.out.println("Wpisane liczby: "+wpisaneLiczby);
-
-        /* ------------------------------------------------------------ */
-
-        //TODO: do LinkedListy wstawić liczby trafione, które są w obu kolekcjach
-
-            List<Integer> trafioneLiczby = new LinkedList<>();
-
-            for (Integer wpisana: wpisaneLiczby)
-            {
-
-                if(wylosowaneLiczby.contains(wpisana))
-                {
-                    trafioneLiczby.add(wpisana);
-                }
-
-            }
-
-            System.out.println("Odgadnięto: "+trafioneLiczby);
-
-        /* ------------------------------------------------------------- */
-
-        //TODO: wydzielić do metod LOSUJ, WSTAW, SPRAWDŹ
-        //TODO: wydzielić do oddzielnej klasy
+        //TODO: wydzielić do odzielnej klasy
     }
 }
