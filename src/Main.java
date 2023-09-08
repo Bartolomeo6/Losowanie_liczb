@@ -78,7 +78,7 @@ public class Main {
             ArrayList<Integer> wpisaneLiczby = new ArrayList<>();
             Scanner klawiatura = new Scanner(System.in);
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 1; i <= 6; i++)
             {
                 System.out.println("Wstaw liczbę nr. "+i);
                 int liczba = klawiatura.nextInt();
@@ -101,7 +101,20 @@ public class Main {
 
             List<Integer> trafioneLiczby = new LinkedList<>();
 
+            for (Integer wpisana: wpisaneLiczby)
+            {
+
+                if(wylosowaneLiczby.contains(wpisana))
+                {
+                    trafioneLiczby.add(wpisana);
+                }
+
+            }
+
+            System.out.println("Odgadnięto: "+trafioneLiczby);
+
         /* ------------------------------------------------------------- */
+
         //TODO: wydzielić do metod LOSUJ, WSTAW, SPRAWDŹ
         //TODO: wydzielić do oddzielnej klasy
     }
