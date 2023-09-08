@@ -1,4 +1,4 @@
-import java.util.HashSet;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args)
@@ -70,5 +70,39 @@ public class Main {
         {
             System.out.println(wartoscWylosowana);
         }
+
+        /* ------------------------------------------------------------ */
+
+        //TODO: do ArrayListy wstawić 6 różnych liczb pisanych z klawiatury
+
+            ArrayList<Integer> wpisaneLiczby = new ArrayList<>();
+            Scanner klawiatura = new Scanner(System.in);
+
+            for (int i = 0; i < 6; i++)
+            {
+                System.out.println("Wstaw liczbę nr. "+i);
+                int liczba = klawiatura.nextInt();
+
+                while(wpisaneLiczby.contains(liczba))
+                {
+
+                    System.out.println("Podaj inną liczbę");
+                    liczba = klawiatura.nextInt();
+
+                }
+                wpisaneLiczby.add(liczba);
+            }
+
+        System.out.println("Wpisane liczby: "+wpisaneLiczby);
+
+        /* ------------------------------------------------------------ */
+
+        //TODO: do LinkedListy wstawić liczby trafione, które są w obu kolekcjach
+
+            List<Integer> trafioneLiczby = new LinkedList<>();
+
+        /* ------------------------------------------------------------- */
+        //TODO: wydzielić do metod LOSUJ, WSTAW, SPRAWDŹ
+        //TODO: wydzielić do oddzielnej klasy
     }
 }
